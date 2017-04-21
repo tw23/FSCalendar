@@ -162,7 +162,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
     _formatter = [[NSDateFormatter alloc] init];
     _formatter.dateFormat = @"yyyy-MM-dd";
     _weekDayFormatter = [[NSDateFormatter alloc] init];
-    _weekDayFormatter.dateFormat = @"MMM d, yyyy";
+    _weekDayFormatter.dateFormat = @"MMM d";
     _locale = [NSLocale currentLocale];
     _timeZone = [NSTimeZone localTimeZone];
     _firstWeekday = 1;
@@ -680,6 +680,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
             NSDate *minimumPage = _minimumDate;
             targetPage = [self.gregorian dateByAddingUnit:NSCalendarUnitDay value:sections toDate:minimumPage options:0];
             [self selectDate:targetPage];
+            [self.delegateProxy calendar:self didSelectDate:targetPage atMonthPosition:FSCalendarMonthPositionCurrent];
             break;
         }
     }

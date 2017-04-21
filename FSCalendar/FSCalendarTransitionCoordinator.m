@@ -385,6 +385,7 @@
             self.collectionViewLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
             self.calendar.calendarHeaderView.scrollDirection = self.collectionViewLayout.scrollDirection;
             self.calendar.calendarWeekdayView.hidden = YES;
+            self.calendar.collectionView.hidden = YES;
             self.calendar.needsAdjustingViewFrame = YES;
             [self.collectionView reloadData];
             [self.calendar.calendarHeaderView reloadData];
@@ -738,6 +739,7 @@
     self.collectionViewLayout.scrollDirection = (UICollectionViewScrollDirection)self.calendar.scrollDirection;
     self.calendar.calendarHeaderView.scrollDirection = self.collectionViewLayout.scrollDirection;
     self.calendar.calendarWeekdayView.hidden = NO;
+    self.calendar.collectionView.hidden = NO;
     self.calendar.needsAdjustingViewFrame = YES;
     [self.calendar setNeedsLayout];
     [self.collectionView reloadData];
