@@ -384,6 +384,7 @@
             }];
             self.collectionViewLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
             self.calendar.calendarHeaderView.scrollDirection = self.collectionViewLayout.scrollDirection;
+            self.calendar.calendarWeekdayView.hidden = YES;
             self.calendar.needsAdjustingViewFrame = YES;
             [self.collectionView reloadData];
             [self.calendar.calendarHeaderView reloadData];
@@ -736,6 +737,7 @@
     self.calendar.contentView.fs_height = CGRectGetHeight(self.pendingAttributes.targetBounds)-self.calendar.scopeHandle.fs_height;
     self.collectionViewLayout.scrollDirection = (UICollectionViewScrollDirection)self.calendar.scrollDirection;
     self.calendar.calendarHeaderView.scrollDirection = self.collectionViewLayout.scrollDirection;
+    self.calendar.calendarWeekdayView.hidden = NO;
     self.calendar.needsAdjustingViewFrame = YES;
     [self.calendar setNeedsLayout];
     [self.collectionView reloadData];

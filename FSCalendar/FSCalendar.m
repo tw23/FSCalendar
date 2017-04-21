@@ -52,6 +52,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
 
 @property (strong, nonatomic) NSCalendar *gregorian;
 @property (strong, nonatomic) NSDateFormatter *formatter;
+@property (strong, nonatomic) NSDateFormatter *weekDayFormatter;
 @property (strong, nonatomic) NSDateComponents *components;
 @property (strong, nonatomic) NSTimeZone *timeZone;
 
@@ -160,6 +161,8 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
     _components = [[NSDateComponents alloc] init];
     _formatter = [[NSDateFormatter alloc] init];
     _formatter.dateFormat = @"yyyy-MM-dd";
+    _weekDayFormatter = [[NSDateFormatter alloc] init];
+    _weekDayFormatter.dateFormat = @"MMM d, yyyy";
     _locale = [NSLocale currentLocale];
     _timeZone = [NSTimeZone localTimeZone];
     _firstWeekday = 1;
@@ -421,7 +424,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
                 return CGSizeMake(size.width, height);
             }
             case FSCalendarScopeWeek: {
-                CGFloat height = weekdayHeight + headerHeight + rowHeight + paddings;
+                CGFloat height = headerHeight;
                 height += _scopeHandle.fs_height;
                 return CGSizeMake(size.width, height);
             }
@@ -674,8 +677,9 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
             break;
         }
         case FSCalendarScopeWeek: {
-            NSDate *minimumPage = [self.gregorian fs_firstDayOfWeek:_minimumDate];
-            targetPage = [self.gregorian dateByAddingUnit:NSCalendarUnitWeekOfYear value:sections toDate:minimumPage options:0];
+            NSDate *minimumPage = _minimumDate;
+            targetPage = [self.gregorian dateByAddingUnit:NSCalendarUnitDay value:sections toDate:minimumPage options:0];
+            [self selectDate:targetPage];
             break;
         }
     }
@@ -1288,7 +1292,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
                     break;
                 }
                 case FSCalendarScopeWeek: {
-                    _currentPage = [self.gregorian fs_firstDayOfWeek:date];
+                    _currentPage = date;
                     break;
                 }
             }
@@ -1300,7 +1304,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
             }
             [self didChangeValueForKey:@"currentPage"];
         }
-        [self scrollToDate:_currentPage animated:animated];
+        [self scrollToDate:self.scope == FSCalendarScopeWeek ? date : _currentPage animated:animated];
     } else {
         [self scrollToDate:[self.gregorian fs_firstDayOfMonth:date] animated:animated];
     }
@@ -1696,6 +1700,7 @@ void FSCalendarRunLoopCallback(CFRunLoopObserverRef observer, CFRunLoopActivity 
 {
     [self requestBoundingDatesIfNecessary];
     NSDate *targetPage = self.pagingEnabled?self.currentPage:(self.currentPage?:self.selectedDate);
+    if (self.scope == FSCalendarScopeWeek) targetPage = self.selectedDate;
     [self scrollToPageForDate:targetPage animated:NO];
     self.calendarHeaderView.needsAdjustingMonthPosition = YES;
 }

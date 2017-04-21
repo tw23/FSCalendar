@@ -547,7 +547,7 @@
 					};
 					EE0D7FC61B89C5D3003C287B = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = HZF422TY46;
+						DevelopmentTeam = 4AC368HQ6Z;
 					};
 					EE638CE11B8A1F550006DD1A = {
 						CreatedOnToolsVersion = 6.4;
@@ -850,7 +850,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HZF422TY46;
+				DEVELOPMENT_TEAM = 4AC368HQ6Z;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -864,7 +864,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HZF422TY46;
+				DEVELOPMENT_TEAM = 4AC368HQ6Z;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

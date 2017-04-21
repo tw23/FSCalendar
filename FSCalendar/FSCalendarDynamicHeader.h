@@ -38,6 +38,7 @@
 @property (readonly, nonatomic) NSCalendar *gregorian;
 @property (readonly, nonatomic) NSDateComponents *components;
 @property (readonly, nonatomic) NSDateFormatter *formatter;
+@property (readonly, nonatomic) NSDateFormatter *weekDayFormatter;
 
 @property (readonly, nonatomic) UIView *contentView;
 @property (readonly, nonatomic) UIView *daysContainer;
