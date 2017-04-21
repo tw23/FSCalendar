@@ -72,7 +72,7 @@
         _needsAdjustingViewFrame = NO;
         _collectionViewLayout.itemSize = CGSizeMake(1, 1);
         [_collectionViewLayout invalidateLayout];
-        _collectionView.frame = CGRectMake(0, self.fs_height*0.1, self.fs_width, self.fs_height*0.9);
+        _collectionView.frame = self.calendar.transitionCoordinator.representingScope == FSCalendarScopeMonth ? CGRectMake(0, self.fs_height*0.1, self.fs_width, self.fs_height*0.9) : CGRectMake(0, 0, self.fs_width, self.fs_height);
     }
     
     if (_needsAdjustingMonthPosition) {
